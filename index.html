@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>TTB Adoption Form</title>
+<style>
+body { font-family: Arial,sans-serif; max-width:900px; margin:auto; padding:20px; background:#f9f9f9; }
+h2 { color:#5c068c; text-align:center; }
+label { display:block; margin-top:10px; font-weight:bold; color:#5c068c; }
+input, select, textarea { width:100%; padding:5px; margin-top:3px; border:2px solid #6fcbf1; border-radius:4px; }
+input:focus, select:focus, textarea:focus { outline:none; border-color:#9b26b6; box-shadow:0 0 5px #6fcbf1; }
+button { padding:10px 20px; font-size:16px; margin-top:10px; background:#5c068c; color:white; border:none; border-radius:6px; cursor:pointer; }
+button:hover { background:#9b26b6; }
+</style>
+</head>
 <body>
 
-<h2>Test form</h2>
+<h2>Tiny Toe Beans Rescue Adoption Form</h2>
+<p>Please fill out this form to apply to adopt a cat.</p>
 
-<form
-  action="https://script.google.com/macros/s/AKfycbxl2svyJ4x3yQ5ga6SM3bTGDJ9j293iMetxW-cepocnKpSLmJvryzP4LZVVFnnTQGBk/exec"
-  method="POST"
->
+<form action="https://script.google.com/macros/s/AKfycbxl2svyJ4x3yQ5ga6SM3bTGDJ9j293iMetxW-cepocnKpSLmJvryzP4LZVVFnnTQGBk/exec" method="POST" enctype="multipart/form-data">
 
-First name<br>
-<input name="firstName"><br><br>
+  <label>First Name *</label>
+  <input type="text" name="Q19_FirstName" required>
 
-Last name<br>
-<input name="lastName"><br><br>
+  <label>Last Name *</label>
+  <input type="text" name="Q20_LastName" required>
 
-Cat name<br>
-<input name="catName"><br><br>
+  <label>Cat Name *</label>
+  <input type="text" name="Q5_CatName" required>
 
-Email<br>
-<input name="email"><br><br>
+  <label>Email *</label>
+  <input type="email" name="Q26_Email" required>
 
-<button type="submit">Submit</button>
+  <label>Photo ID (jpg/png/pdf) *</label>
+  <input type="file" name="Q32_FileID" accept=".jpg,.jpeg,.png,.pdf" required>
 
+  <label>Address Document 1 (jpg/png/pdf) *</label>
+  <input type="file" name="Q33_FileAddr1" accept=".jpg,.jpeg,.png,.pdf" required>
+
+  <label>Address Document 2 (jpg/png/pdf) *</label>
+  <input type="file" name="Q34_FileAddr2" accept=".jpg,.jpeg,.png,.pdf" required>
+
+  <button type="submit">Submit Application</button>
 </form>
+
+<p>After submitting, your application will be processed and you will receive a confirmation email.</p>
 
 </body>
 </html>
