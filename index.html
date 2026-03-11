@@ -1,46 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script>
-
-const WEBAPP = "https://script.google.com/macros/s/AKfycbxl2svyJ4x3yQ5ga6SM3bTGDJ9j293iMetxW-cepocnKpSLmJvryzP4LZVVFnnTQGBk/exec";
-
-async function submitForm(){
-
-  const data = {
-    firstName: document.getElementById("firstName").value,
-    lastName: document.getElementById("lastName").value,
-    catName: document.getElementById("catName").value,
-    email: document.getElementById("email").value
-  };
-
-  await fetch(WEBAPP, {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  });
-
-  alert("Submitted (check sheet)");
-
-}
-
-</script>  <title>Test Form</title>
-</head>
 <body>
 
-<h2>Test submit</h2>
+<h2>Test form</h2>
 
-<input id="firstName" placeholder="First name"><br><br>
-<input id="lastName" placeholder="Last name"><br><br>
-<input id="catName" placeholder="Cat"><br><br>
-<input id="email" placeholder="Email"><br><br>
+<form
+  action="https://script.google.com/macros/s/AKfycbxl2svyJ4x3yQ5ga6SM3bTGDJ9j293iMetxW-cepocnKpSLmJvryzP4LZVVFnnTQGBk/exec"
+  method="POST"
+>
 
-<button onclick="submitForm()">Submit</button>
+First name<br>
+<input name="firstName"><br><br>
 
+Last name<br>
+<input name="lastName"><br><br>
 
+Cat name<br>
+<input name="catName"><br><br>
+
+Email<br>
+<input name="email"><br><br>
+
+<button type="submit">Submit</button>
+
+</form>
 
 </body>
 </html>
