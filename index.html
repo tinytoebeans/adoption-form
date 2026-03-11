@@ -5,12 +5,43 @@
 </head>
 <body>
 
-<h2>Form is working</h2>
+<h2>Test submit</h2>
 
-<form>
-  First name: <input type="text"><br><br>
-  <button>Submit</button>
-</form>
+<input id="firstName" placeholder="First name"><br><br>
+<input id="lastName" placeholder="Last name"><br><br>
+<input id="catName" placeholder="Cat"><br><br>
+<input id="email" placeholder="Email"><br><br>
+
+<button onclick="submitForm()">Submit</button>
+
+<script>
+
+const WEBAPP = "PASTE_WEBAPP_URL_HERE";
+
+async function submitForm(){
+
+  const data = {
+    firstName: document.getElementById("firstName").value,
+    lastName: document.getElementById("lastName").value,
+    catName: document.getElementById("catName").value,
+    email: document.getElementById("email").value
+  };
+
+  const res = await fetch(WEBAPP, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  const result = await res.json();
+
+  alert(JSON.stringify(result));
+
+}
+
+</script>
 
 </body>
 </html>
