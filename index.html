@@ -1,7 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Test Form</title>
+<script>
+
+const WEBAPP = "https://script.google.com/macros/s/AKfycbxl2svyJ4x3yQ5ga6SM3bTGDJ9j293iMetxW-cepocnKpSLmJvryzP4LZVVFnnTQGBk/exec";
+
+async function submitForm(){
+
+  const data = {
+    firstName: document.getElementById("firstName").value,
+    lastName: document.getElementById("lastName").value,
+    catName: document.getElementById("catName").value,
+    email: document.getElementById("email").value
+  };
+
+  await fetch(WEBAPP, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  alert("Submitted (check sheet)");
+
+}
+
+</script>  <title>Test Form</title>
 </head>
 <body>
 
@@ -14,34 +40,7 @@
 
 <button onclick="submitForm()">Submit</button>
 
-<script>
 
-const WEBAPP = "https://script.google.com/macros/s/AKfycbwHMIXYslIEA4qFvR9j0Qfl9nz8fWMuuYNQgmz9WM7ByUTR_weiA4oUbccsEKjBnf3p/exec";
-
-async function submitForm(){
-
-  const data = {
-    firstName: document.getElementById("firstName").value,
-    lastName: document.getElementById("lastName").value,
-    catName: document.getElementById("catName").value,
-    email: document.getElementById("email").value
-  };
-
-  const res = await fetch(WEBAPP, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  });
-
-  const result = await res.json();
-
-  alert(JSON.stringify(result));
-
-}
-
-</script>
 
 </body>
 </html>
