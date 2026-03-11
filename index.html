@@ -2,57 +2,68 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TTB Test Adoption Form</title>
+<title>Test Adoption Form</title>
 <style>
-  body { font-family: Arial, sans-serif; max-width:500px; margin:auto; padding:20px; }
-  label { display:block; margin-top:10px; }
-  input { width:100%; padding:5px; margin-top:3px; }
-  button { margin-top:15px; padding:10px 20px; }
-  #status { margin-top:15px; font-weight:bold; }
+body { font-family: Arial; max-width:600px; margin:auto; padding:20px; }
+label { display:block; margin-top:10px; font-weight:bold; }
+input { width:100%; padding:5px; margin-top:3px; }
+button { margin-top:15px; padding:10px 20px; background:#5c068c; color:white; border:none; cursor:pointer; }
+#status { margin-top:15px; font-weight:bold; }
 </style>
 </head>
 <body>
-<h2>TTB Test Adoption Form</h2>
-<form id="testForm">
-  <label>First Name: <input type="text" name="Q19_FirstName" required></label>
-  <label>Last Name: <input type="text" name="Q20_LastName" required></label>
-  <label>Cat Name: <input type="text" name="Q5_CatName" required></label>
-  <label>Email: <input type="email" name="Q26_Email" required></label>
-  <label>Upload Photo ID: <input type="file" name="Q32_FileID" required></label>
-  <button type="submit">Submit</button>
+
+<h2>Test Adoption Form</h2>
+
+<form id="adoptForm">
+  <label>First Name *</label>
+  <input type="text" name="Q19_FirstName" required>
+
+  <label>Last Name *</label>
+  <input type="text" name="Q20_LastName" required>
+
+  <label>Cat Name *</label>
+  <input type="text" name="Q5_CatName" required>
+
+  <label>Email *</label>
+  <input type="email" name="Q26_Email" required>
+
+  <label>Photo ID *</label>
+  <input type="file" name="Q32_FileID" required>
+
+  <button type="button" onclick="submitForm()">Submit</button>
 </form>
+
 <div id="status"></div>
 
 <script>
-const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxl2svyJ4x3yQ5ga6SM3bTGDJ9j293iMetxW-cepocnKpSLmJvryzP4LZVVFnnTQGBk/exec";
-const statusDiv = document.getElementById("status");
-const form = document.getElementById("testForm");
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxl2svyJ4x3yQ5ga6SM3bTGDJ9j293iMetxW-cepocnKpSLmJvryzP4LZVVFnnTQGBk/exec"; // Replace with your deployed Apps Script URL
 
-form.addEventListener("submit", async function(e){
-  e.preventDefault();
-  statusDiv.textContent = "Submitting...";
-  
+function submitForm(){
+  const form = document.getElementById("adoptForm");
   const formData = new FormData(form);
 
-  try {
-    const response = await fetch(WEBAPP_URL, {
-      method: "POST",
-      body: formData
-    });
-    const result = await response.json();
+  document.getElementById("status").innerText = "Submitting...";
 
-    if(result.status === "success"){
-      statusDiv.textContent = `Success! Reference: ${result.ref}`;
+  fetch(WEBAPP_URL, {
+    method: "POST",
+    body: formData
+  })
+  .then(r => r.json())
+  .then(res => {
+    if(res.status === "success"){
+      document.getElementById("status").innerText = "Success! Reference: " + res.ref;
       form.reset();
     } else {
-      statusDiv.textContent = `Error: ${result.message}`;
+      document.getElementById("status").innerText = "Error: " + res.message;
     }
-
-  } catch(err){
+  })
+  .catch(err => {
     console.error(err);
-    statusDiv.textContent = "Submission failed: " + err;
-  }
-});
+    document.getElementById("status").innerText = "Submission failed: " + err;
+  });
+}
 </script>
+
 </body>
 </html>
