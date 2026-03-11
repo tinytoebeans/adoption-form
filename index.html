@@ -1,49 +1,19 @@
-<form id="adoptionForm">
-  <label>First Name*</label>
-  <input type="text" name="Q19_FirstName" required>
-  
-  <label>Last Name*</label>
-  <input type="text" name="Q20_LastName" required>
-  
-  <label>Cat Name*</label>
-  <input type="text" name="Q5_CatName" required>
-  
-  <label>Email*</label>
-  <input type="email" name="Q26_Email" required>
-  
-  <label>Photo ID*</label>
-  <input type="file" name="Q32_FileID" required>
-  
-  <label>Address Doc 1*</label>
-  <input type="file" name="Q33_FileAddr1" required>
-  
-  <label>Address Doc 2*</label>
-  <input type="file" name="Q34_FileAddr2" required>
-  
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>TTB Test Adoption Form</title>
+</head>
+<body>
+<h2>Test Adoption Form</h2>
+<form action="https://script.google.com/macros/s/AKfycbxl2svyJ4x3yQ5ga6SM3bTGDJ9j293iMetxW-cepocnKpSLmJvryzP4LZVVFnnTQGBk/exec" method="post" enctype="multipart/form-data">
+  <label>First Name: <input type="text" name="Q19_FirstName" required></label><br><br>
+  <label>Last Name: <input type="text" name="Q20_LastName" required></label><br><br>
+  <label>Cat Name: <input type="text" name="Q5_CatName" required></label><br><br>
+  <label>Email: <input type="email" name="Q26_Email" required></label><br><br>
+  <label>Upload Photo ID: <input type="file" name="Q32_FileID" required></label><br><br>
   <button type="submit">Submit</button>
 </form>
-
-<div id="result"></div>
-
-<script>
-const WEBAPP_URL = "PASTE_YOUR_WEBAPP_URL_HERE";
-
-document.getElementById("adoptionForm").addEventListener("submit", async e=>{
-  e.preventDefault();
-  const form = e.target;
-  const data = new FormData(form);
-  try {
-    const resp = await fetch(WEBAPP_URL, { method:"POST", body:data });
-    const result = await resp.json();
-    if(result.status==="success"){
-      document.getElementById("result").innerText = "Form submitted successfully! Ref: "+result.ref;
-      form.reset();
-    } else {
-      document.getElementById("result").innerText = "Error: "+result.message;
-    }
-  } catch(err){
-    document.getElementById("result").innerText = "Submission failed: "+err;
-    console.error(err);
-  }
-});
-</script>
+<div id="status"></div>
+</body>
+</html>
